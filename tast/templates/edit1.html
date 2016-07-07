@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block table %}
+<style type="text/css">
+li {list-style-type:none;}
+
+.btn-select {
+position: relative;
+display: inline-block;
+width: 150px;
+height: 25px;
+background-color: #f80;
+font: 14px/20px "Microsoft YaHei";
+color: #fff;
+}
+.btn-select .cur-select {
+position: absolute;
+display: block;
+width: 150px;
+height: 25px;
+line-height: 25px;
+background: #f80 url(ico-arrow.png) no-repeat 125px center;
+text-indent: 10px;
+}
+.btn-select:hover .cur-select {
+background-color: #f90;
+}
+.btn-select select {
+position: absolute;
+top: 0;
+left: 0;
+width: 150px;
+height: 25px;
+opacity: 0;
+filter: alpha(opacity: 0;);
+font: 14px/20px "Microsoft YaHei";
+color: #f80;
+}
+.btn-select select option {
+text-indent: 10px;
+}
+.btn-select select option:hover {
+background-color: #f80;
+color: #fff;
+}
+</style>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <div class="container">
+            <form class = "form-horizontal" action="" method="post" >{% csrf_token %}
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.platform.label}}</label><br />
+                  <a class="btn-select" id="btn_select">
+                  <span class="cur-select">请选择</span>
+                  {{form.platform}}
+                  </a>
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.analysts_name.label}}</label><br />
+                  {{form.analysts_name}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.name.label}}</label><br />
+                  {{form.name}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.transmission_mode.label}}</label><br />
+                  <a class="btn-select" id="btn_select1">
+                  <span class="cur-select">请选择</span>
+                  {{form.transmission_mode}}
+                  </a>
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.start_time.label}}</label><br />
+                  {{form.start_time}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.end_time.label}}</label><br />
+                  {{form.end_time}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.sample_num.label}}</label><br />
+                  {{form.sample_num}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.working_hour.label}}</label><br />
+                  {{form.working_hour}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.project_infomation.label}}</label><br />
+                  {{form.project_infomation}}
+                </div>
+                <button type="submit" class="buttoncss">edit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+<script type="text/javascript" src="/static/jquery/jQuery.js"></script>
+<script type="text/javascript" src="/static/jquery/showcalendar.js"></script>
+<script type="text/javascript" src="/static/js/date.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/date.css">
+<script type="text/javascript" src="/static/js/select.js"></script>
+<script type="text/javascript">
+    $('#id_start_time').datetimepicker();
+    $('#id_end_time').datetimepicker();
+
+</script>
+<script>
+    var $$ = function (id) {
+    return document.getElementById(id);
+    }
+
+    window.onload =selectedChange("btn_select");
+    window.onload =selectedChange("btn_select1");
+    function selectedChange(id) {
+    var id = id;
+    var btnSelect = $$(id);
+    var curSelect = btnSelect.getElementsByTagName("span")[0];
+    var oSelect = btnSelect.getElementsByTagName("select")[0];
+    var aOption = btnSelect.getElementsByTagName("option");
+    oSelect.onchange = function () {
+    var text=oSelect.options[oSelect.selectedIndex].text;
+    curSelect.innerHTML = text;
+    }
+
+}
+</script>
+<script type="text/javascript">
+    (function(){
+        $('#id_analysts_name li').map(function(){
+            $(this).css('display','inline').css('margin','80px').css('font-size','20px');
+
+        });
+    })();
+</script>
+<script type="text/javascript">
+    $('input[type="number"]').attr("min","0");
+    $('input[type="number"]').css('width','320px').css('height','34px');
+    $('div>a>span').css('width','320px').css('height','34px');
+    $('div>a>select').css('width','320px').css('height','34px');
+    $('#id_start_time').css('width','320px').css('height','34px');
+    $('#id_end_time').css('width','320px').css('height','34px');
+    $('.form-group').css('margin','30px 0');
+</script>
+{% endblock %}
+

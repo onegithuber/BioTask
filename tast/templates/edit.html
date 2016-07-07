@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+
+{% block table %}
+<style type="text/css">
+li {list-style-type:none;}
+  .blue
+    {
+    color:blue;
+    }
+.btn-select {
+position: relative;
+display: inline-block;
+width: 150px;
+height: 25px;
+background-color: #f80;
+font: 14px/20px "Microsoft YaHei";
+color: #fff;
+}
+.btn-select .cur-select {
+position: absolute;
+display: block;
+width: 150px;
+height: 25px;
+line-height: 25px;
+background: #f80 url(ico-arrow.png) no-repeat 125px center;
+text-indent: 10px;
+}
+.btn-select:hover .cur-select {
+background-color: #f90;
+}
+.btn-select select {
+position: absolute;
+top: 0;
+left: 0;
+width: 150px;
+height: 25px;
+opacity: 0;
+filter: alpha(opacity: 0;);
+font: 14px/20px "Microsoft YaHei";
+color: #f80;
+}
+.btn-select select option {
+text-indent: 10px;
+}
+.btn-select select option:hover {
+background-color: #f80;
+color: #fff;
+}
+.checkbox-inline {
+display: inline-block;
+padding-left: 20px;
+margin-bottom: 0;
+font-weight: normal;
+vertical-align: middle;
+cursor: pointer;
+}
+.checkbox-inline {
+margin-top: 0;
+margin-left: 10px;
+}
+</style>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <div class="container">
+            <form class = "form-horizontal" action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.platform.label}}</label><br />
+                  <a class="btn-select" id="btn_select">
+                  <span class="cur-select">请选择</span>
+                  {{form.platform}}
+                  </a>
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.habitude.label}}</label><br />
+                  {{form.habitude}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.priority.label}}</label><br />
+                  <a class="btn-select" id="btn_select3">
+                  <span class="cur-select">请选择</span>
+                  {{form.priority}}
+                  </a>
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.species.label}}</label><br />
+                  {{form.species}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.detection_type.label}}</label><br />
+                  {{form.detection_type}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.analysts_name.label}}</label><br />
+                  {{form.analysts_name}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.supporter.label}}</label><br />
+                  <a class="btn-select" id="btn_select1">
+                  <span class="cur-select">请选择</span>
+                  {{form.supporter}}
+                  </a>
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.salesman.label}}</label><br />
+                  <a class="btn-select" id="btn_select1">
+                  <span class="cur-select">请选择</span>
+                  {{form.salesman}}
+                  </a>
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.name.label}}</label><br />
+                  {{form.name}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.sequenom.label}}</label><br />
+                  {{form.sequenom}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.analysts_demand.label}}</label><br />
+                  {{form.analysts_demand}}
+                </div>
+                <div>
+                  <label style="font-size:20px" for="">{{form.external_extension.label}}</label><br />
+                  {{form.external_extension}}
+                </div>
+                <div>
+                  <label style="font-size:20px" for="">{{form.internal_extension.label}}</label><br />
+                  {{form.internal_extension}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.transmission_mode.label}}</label><br />
+                  <a class="btn-select" id="btn_select2">
+                  <span class="cur-select">请选择</span>
+                  {{form.transmission_mode}}
+                  </a>
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.start_time.label}}</label><br />
+                  {{form.start_time}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.analysts_end_time.label}}</label><br />
+                  {{form.analysts_end_time}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.sample_num.label}}</label><br />
+                  {{form.sample_num}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.working_hour.label}}</label><br />
+                  {{form.working_hour}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.machine_hour.label}}</label><br />
+                  {{form.machine_hour}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.inspection.label}}</label><br />
+                  {{form.inspection}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.qualitycontrl.label}}</label><br />
+                  {{form.qualitycontrl}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.project_infomation.label}}</label><br />
+                  {{form.project_infomation}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.tastinfo.label}}</label><br />
+                  {{form.tastinfo}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.batch.label}}</label><br />
+                  {{form.batch}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.casaver.label}}</label><br />
+                  {{form.casaver}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.data_amount.label}}</label><br />
+                  {{form.data_amount}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.raw_data.label}}</label><br />
+                  {{form.raw_data}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.additional_analysis.label}}</label><br />
+                  {{form.additional_analysis}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.order_number.label}}</label><br />
+                  {{form.order_number}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.reads.label}}</label><br />
+                  {{form.reads}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.reads_length.label}}</label><br />
+                  {{form.reads_length}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.library_modus.label}}</label><br />
+                  {{form.library_modus}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.error_reason.label}}</label><br />
+                  {{form.error_reason}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.internal_time.label}}</label><br />
+                  {{form.internal_time}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.external_time.label}}</label><br />
+                  {{form.external_time}}
+                </div>
+
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.internal.label}}</label><br />
+                  {{form.internal}}
+                </div>
+                <div class="form-group">
+                  <label style="font-size:20px" for="">{{form.external.label}}</label><br />
+                  {{form.external}}
+                </div>
+                <button type="submit" class="buttoncss">edit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+<script type="text/javascript" src="/static/jquery/jQuery.js"></script>
+<script type="text/javascript" src="/static/jquery/showcalendar.js"></script>
+<script type="text/javascript" src="/static/js/date.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/date.css">
+<script type="text/javascript" src="/static/js/select.js"></script>
+{#<script type="text/javascript">#}
+{#    $('#id_start_time').datetimepicker();#}
+{#    $('#id_analysts_end_time').datetimepicker();#}
+{##}
+{#</script>#}
+<script>
+    var $$ = function (id) {
+    return document.getElementById(id);
+    }
+
+    window.onload =selectedChange("btn_select");
+    window.onload =selectedChange("btn_select1");
+    window.onload =selectedChange("btn_select2");
+    window.onload =selectedChange("btn_select3");
+
+    function selectedChange(id) {
+    var id = id;
+    var btnSelect = $$(id);
+    var curSelect = btnSelect.getElementsByTagName("span")[0];
+    var oSelect = btnSelect.getElementsByTagName("select")[0];
+    var aOption = btnSelect.getElementsByTagName("option");
+    oSelect.onchange = function () {
+    var text=oSelect.options[oSelect.selectedIndex].text;
+    curSelect.innerHTML = text;
+    }
+
+}
+</script>
+<script type="text/javascript">
+    (function(){
+        $('#id_analysts_name li').map(function(){
+            $(this).css('display','inline').css('margin','80px').css('font-size','20px');
+
+        });
+    })();
+</script>
+<script type="text/javascript">
+    $('input[type="number"]').attr("min","0");
+    $('input[type="number"]').css('width','320px').css('height','34px');
+    $('div>a>span').css('width','320px').css('height','34px');
+    $('div>a>select').css('width','320px').css('height','34px');
+    $('#id_start_time').css('width','320px').css('height','34px');
+    $('#id_analysts_end_time').css('width','320px').css('height','34px');
+    $('.form-group').css('margin','30px 0');
+</script>
+{% endblock %}
+

@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block table %}
+    <script src="/static/echarts/build/dist/echarts.js"></script>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="">
+    <form class = "form-horizontal" action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <div class="input-group">
+          <span class="input-group-addon">年份：</span>
+          <input type="text" class="form-control" style="width:60px;" aria-label="Amount (to the nearest dollar)" name="year" required>
+          <select id="select1" name="sequence">
+            <option value="1">DNA芯片</option>
+            <option value="2">RNA芯片</option>
+            <option value="3">NGS测序</option>
+          </select>
+          <select id="select2" name="quarter">
+            <option value="1">第一季度</option>
+            <option value="2">第二季度</option>
+            <option value="3">第三季度</option>
+            <option value="4">第四季度</option>
+          </select>
+          <button>查询</button>
+        </div>
+    </form>
+</div>
+
+<div id="main" style="height:400px;">
+<script type="text/javascript">
+    require.config(
+            {
+                paths:{
+                    'echarts' : '/static/echarts/build/dist',
+                }
+            }
+    );
+    require([
+                'echarts',
+                'echarts/chart/line',   // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar'
+    ],
+    function(ec){
+        var myChart = ec.init(document.getElementById('main'));
+        var option = {
+        tooltip : {
+            show :true,
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        legend: {
+            data: ['常规', '后续','测试','特殊']
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis:  {
+            type: 'value'
+        },
+        yAxis: {
+            type: 'category',
+            data: ['一月份','二月份','三月份','本季度',]
+        },
+        series: [
+            {
+                name: '常规',
+                type: 'bar',
+                stack: '总量',
+                itemStyle : { normal: {label : {show: true, position: 'insideLeft'}}},
+                data: {{ normal_list }}
+            },
+            {
+                name: '后续',
+                type: 'bar',
+                stack: '总量',
+                itemStyle : { normal: {label : {show: true, position: 'insideLeft'}}},
+                data: {{ subsequent_list }}
+            },
+            {
+                name: '特殊',
+                type: 'bar',
+                stack: '总量',
+                itemStyle : { normal: {label : {show: true, position: 'insideLeft'}}},
+                data: {{ leaguer_list }}
+            },
+            {
+                name: '测试',
+                type: 'bar',
+                stack: '总量',
+                itemStyle : { normal: {label : {show: true, position: 'insideLeft'}}},
+                data: {{ test_list }}
+            },
+        ]
+
+        };
+            myChart.setOption(option);
+        }
+    );
+</script>
+</div>
+    </div>
+{% endblock %}

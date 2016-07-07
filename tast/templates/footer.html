@@ -1,0 +1,351 @@
+<style>
+body {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    font-family: 'Raleway', sans-serif;
+    overflow-x: hidden;
+    background-color: #FFF;
+    color: #7a7a7a;
+    font-size: 14px;
+    font-weight: 500;
+}
+.container {
+    padding-right: 0;
+    padding-left: 0;
+}
+body,
+li,
+address {
+    line-height: 25px
+}
+input,
+button,
+select,
+textarea {
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+a {
+    color: #3f8dbf;
+    -webkit-transition: all 200ms ease-in;
+    -o-transition: all 200ms ease-in;
+    -moz-transition: all 200ms ease-in;
+}
+a:hover,
+a:focus {
+    color: #2e2e2e;
+    text-decoration: none;
+}
+.colored {
+    color: #3f8dbf
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Raleway', sans-serif;
+    margin-top: 0;
+    color: #616161;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+h1 {
+    font-size: 26px;
+    line-height: 30px;
+}
+h2 {
+    font-size: 22px;
+    line-height: 28px;
+}
+h3 {
+    font-size: 18px;
+    line-height: 22px;
+}
+h4 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+h5 {
+    font-size: 14px
+}
+h6 {
+    font-size: 12px
+}
+.page-title {
+    min-height: 91px
+}
+.page-title h1 {
+    font-size: 22px;
+    font-weight: normal;
+    margin: 4px 0 0 0;
+}
+h3.post-title {
+    font-size: 16px
+}
+h1.post-title {
+    font-size: 22px;
+    line-height: 28px;
+}
+.post-title a {
+    color: #616161
+}
+.post-title a:hover {
+    color: #3f8dbf
+}
+.classic-blog .post-title {
+    margin: 0 0 3px 0
+}
+.upper {
+    text-transform: uppercase
+}
+.section-title {
+    margin-bottom: 40px
+}
+.section-title h2 {
+    font-weight: 800;
+    text-transform: lowercase;
+    font-size: 25px;
+    color: #b6b6b6;
+}
+.section-title .icon {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 21px;
+    width: 130px;
+    margin: 0 auto;
+    position: relative;
+    color: #cacaca;
+}
+.section-title .icon:before {
+    display: inline-block;
+    content: "";
+    border-bottom: 1px solid #dadada;
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 50px;
+}
+.section-title .icon:after {
+    display: inline-block;
+    content: "";
+    border-bottom: 1px solid #dadada;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    width: 50px;
+}
+
+.black-wrapper {
+    background: #2c2c2c;
+    color: #cacaca;
+}
+.black-wrapper .lead {
+    color: #cacaca
+}
+.black-wrapper a {
+    color: #cacaca
+}
+.black-wrapper a:hover {
+    color: #3f8dbf
+}
+.black-wrapper h1,
+.black-wrapper h2,
+.black-wrapper h3,
+.black-wrapper h4,
+.black-wrapper h5,
+.black-wrapper h6 {
+    color: #f0f0f0
+}
+.black-wrapper .section-title h2,
+.black-wrapper .section-title .icon {
+    color: #9b9b9b
+}
+.black-wrapper .section-title .icon:before,
+.black-wrapper .section-title .icon:after {
+    border-color: #636363
+}
+.widget-title {
+    font-size: 14px;
+    margin: 0 0 20px 0;
+}
+
+.footer-menu li {
+    display: inline;
+    padding-left: 10px;
+}
+.footer-menu li:before {
+    display: inline-block;
+    content: "|";
+    padding-right: 12px;
+}
+.footer-menu li:first-child:before {
+    display: none
+}
+.sub-footer {
+    background: #292929;
+    padding: 35px 0;
+}
+.sub-footer p {
+    padding: 0;
+    margin: 0;
+}
+footer .post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+footer .post-list li {
+    margin-top: 19px;
+    padding-top: 20px;
+    border-top: 1px solid #434343;
+}
+footer .post-list li:first-child {
+    border-top: none;
+    margin: 0;
+    padding: 0;
+}
+footer .post-list li h6 {
+    font-size: 14px;
+    line-height: 25px;
+    font-weight: normal;
+    letter-spacing: normal;
+    text-transform: none;
+    margin: 0;
+}
+footer .post-list li em {
+    color: #838383;
+    font-size: 12px;
+    font-style: normal;
+}
+
+
+.color-wrapper p {
+    color: #FFF
+}
+.color-wrapper h1,
+.color-wrapper h2,
+.color-wrapper h3,
+.color-wrapper h4,
+.color-wrapper h5,
+.color-wrapper h6 {
+    color: #FFF
+}
+.inner {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+.page-title .inner {
+    padding-top: 26px;
+    padding-bottom: 26px;
+}
+
+ul {
+    padding: 0 0 0 18px
+}
+ol {
+    padding: 0 0 0 20px
+}
+
+ul.circled li:before {
+    content: '\e800';
+    margin-right: 10px;
+    font-weight: normal;
+    vertical-align: top;
+    padding-top: 1px;
+    display: inline-block;
+    font-family: 'fontello-circle';
+    color: #3f8dbf;
+    font-size: 8px;
+}
+blockquote {
+    border-left: 2px solid #dadada;
+    padding: 0 20px;
+}
+blockquote p {
+    font-size: 20px;
+    line-height: 32px;
+}
+blockquote small {
+    color: #3f8dbf
+}
+hr {
+    border: 0;
+    border-bottom: 1px solid #dadada;
+    margin: 60px 0;
+}
+.map iframe {
+    display: block;
+    max-width: 100%;
+}
+
+</style>
+<footer class="black-wrapper">
+			<div class="container inner">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="widget">
+							<h3 class="section-title widget-title upper">
+								地址
+							</h3>
+							<div class="contact-info">
+								<i class="icon-location"></i>
+								北京市大兴区亦庄经济开发区科创六街88号生物医药园C座（邮编：101111）
+							</div>
+						</div>
+					</div>
+					<!-- /col -->
+					<div class="col-sm-4">
+						<div class="widget">
+							<h3 class="section-title widget-title upper">
+								保持联系
+							</h3>
+							<div class="contact-info">
+								<i class="icon-phone"></i>
+								+86-10-69002900, 6868
+								<br />
+								<i class="icon-mail"></i>
+								bioinfo@capitalbiotech.com
+							</div>
+						</div>
+					</div>
+					<!-- /col -->
+					<div class="col-sm-4">
+						<div class="widget">
+							<h3 class="section-title widget-title upper">
+								订阅简报
+							</h3>
+							<form id="newsletter" class="form-inline newsletter" role="form">
+								<div>
+									<label class="sr-only" for="email">
+										请输入您的电子邮件
+									</label>
+									<input type="email" class="form-control" id="email" placeholder="请输入您的电子邮件">
+								</div>
+								<button type="button" class="btn btn-default btn-submit" onclick="subscribe()">
+									<i class="icon-paper-plane"></i>
+								</button>
+							</form>
+							<div id="subscribe_info"></div>
+						</div>
+						<!-- /.widget -->
+					</div>
+					<!-- /col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- .container -->
+			<div class="sub-footer">
+				<div class="container">
+					<p class="pull-left">
+						&copy; 版权所有
+						<a href="http://www.capitalbiotech.com/">
+							博奥晶典
+						</a>
+					</p>
+				</div>
+			</div>
+		</footer>
+

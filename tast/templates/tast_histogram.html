@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <script src="/static/echarts/build/dist/echarts.js"></script>
+
+</head>
+<body>
+    {% for start_time_list ,num_list,year in year_list  reversed%}
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div id="aaa{{year}}" style="height:400px"></div>
+
+        <!-- ECharts单文件引入 -->
+
+        <script type="text/javascript">
+
+            // 路径配置
+            require.config({
+                paths: {
+                    echarts: '/static/echarts/build/dist'
+                }
+            });
+            // 使用
+            require(
+                [
+                    'echarts',
+                    'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+                ],
+                function (ec) {
+                    // 基于准备好的dom，初始化echarts
+                    var myChart = ec.init(document.getElementById('aaa{{year}}'));
+                    var option = {
+                        title : {
+                            text: {{year}}+"年项目统计",
+                            subtext: '纯属虚构'
+                        },
+                        tooltip: {
+                            show: true,
+                        },
+                        legend: {
+                            data:['项目']
+                        },
+                        toolbox: {
+                            show : true,
+                            feature : {
+                                mark : {show: true},
+                                dataView : {show: true, readOnly: false},
+                                magicType : {show: true, type: ['line', 'bar']},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        xAxis : [
+                            {
+                                type : 'category',
+                                data : {{start_time_list}}
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value'
+                            }
+                        ],
+                        series : [
+                            {
+                                "name":"项目",
+                                "type":"bar",
+                                "data":{{num_list}},
+                                markPoint : {
+                                data : [
+                                    {type : 'max', name: '最大值'},
+                                    {type : 'min', name: '最小值'}
+                                ]
+                            },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name: '平均值'}
+                                    ]
+                                }
+                                }
+                        ]
+                    };
+                    // 为echarts对象加载数据
+                    myChart.setOption(option);
+                }
+            );
+        </script>
+    {%endfor%}
+
+</body>

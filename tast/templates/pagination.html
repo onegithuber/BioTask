@@ -1,0 +1,69 @@
+{#<ul class="pager list-inline">#}
+{#    {% if  tasts.has_previous %}#}
+{#        <li class="previous">#}
+{#            <a href="?page={{tasts.previous_page_number}}">&larr; 上一页</a>#}
+{#        </li>#}
+{#    {% else %}#}
+{#        <li class="previous disabled">#}
+{#            <a>&larr; 上一页</a>#}
+{#        </li>#}
+{#    {% endif %}#}
+{#     {% for page in tasts.paginator.page_range_ext %}#}
+{#     {% if page == tasts.number %}#}
+{#         <a class='paginator_current' title='当前页:{{ page }}'><span>{{ page }}</span></a>#}
+{#     {% else %}#}
+{#         <a class='paginator' href='?page={{ page }}' title='{{ page }}'><span>{{ page }}</span></a>#}
+{#     {% endif %}#}
+{# {% endfor %}#}
+{##}
+{#    <li class="page-number">{{tasts.number}}/{{paginator.num_pages}}</li>#}
+{##}
+{#    {% if  tasts.has_next%}#}
+{#        <li class="next">#}
+{#            <a href="?page={{tasts.next_page_number}}">下一页 &rarr;</a>#}
+{#        </li>#}
+{#    {% else %}#}
+{#        <li class="next disabled">#}
+{#            <a>下一页 &rarr;</a>#}
+{#        </li>#}
+{#    {% endif %}#}
+{#    <li><input id="tiaozhuan" type="text" class="form-control" placeholder="跳转" aria-describedby="basic-addon1" ></li>#}
+{#</ul>#}
+
+<ul class="pagination pagination-sm" style="display: inline;list-style-type: none;padding: 5px 10px;">
+    {% if tasts.has_previous %}
+        <li><a class='paginator' title='上一页' href='?page={{ tasts.previous_page_number }}'><span>&lt;&lt;</span></a></li>
+    {% endif %}
+    {% for page in tasts.paginator.page_range_ext %}
+        {% if page == tasts.number %}
+             <li class="active"><a class='paginator_current "' title='当前页:{{ page }}'><span>{{ page }}</span></a></li>
+        {% else %}
+             <li><a class='paginator' href='?page={{ page }}' title='{{ page }}'><span>{{ page }}</span></a></li>
+        {% endif %}
+    {% endfor %}
+    {% if tasts.has_next %}
+        <li><a class='paginator' title='下一页' href='?page={{ tasts.next_page_number }}'><span>&gt;&gt;</span></a></li>
+    {% endif %}
+        <li><input id="tiaozhuan" type="text"  placeholder="跳转" ></li>
+</ul>
+<script>
+    $("#tiaozhuan").bind("blur",function(){
+    var p = $(this).val();
+    var href = location.href;
+    if(/page=\d+/.test(href)){
+        href = href.replace(/page=\d+/,"page="+p);
+    }else if(href.indexOf('?')==-1){
+        href = href+"?page="+p
+    }else{
+        href = href+"&page="+p
+    }
+    location.href = href;
+});
+//绑定回车事件
+$("#tiaozhuan").bind("keydown",function(event){
+    var e = event || window.event || arguments.callee.caller.arguments[0];
+     if(e && e.keyCode==13){
+         $("#tiaozhuan").trigger('blur');
+    }
+});
+</script>

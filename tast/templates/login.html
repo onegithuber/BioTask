@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://v3.bootcss.com/favicon.ico">
+    <title>Capital</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/table.css">
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/static/js/ie-emulation-modes-warning.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">项目管理平台</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="/edit">添加</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if not user.is_authenticated %}
+            <li>
+                <a  id="nav-login" href="{% url 'all:login' %}" tyle="padding-right:0px;cursor:pointer;">
+                登陆
+                </a>
+            </li>
+            <li>
+                <a  id="nav-register" href="{% url 'all:register'%}" style="padding-right:0px;cursor:pointer">
+                注册
+                </a>
+            </li>
+            {%else%}
+            <li class="dropdown">
+            <a href="javascript:;" style="padding:5px;" data-toggle="dropdown">
+                    <img src="" alt="" width="40">
+                    &nbsp;{{user.username}}
+                    <span class="badge" style="background-color: #D94600;">0</span>
+            </a>
+            <ul class="dropdown-menu navbar-right">
+                <li><a href="/user/changepassword">
+                    <span class="glyphicon glyphicon-envelope"></span>
+                    更改密码</a></li>
+                <li><a id="logout" href="{% url 'loginout'%}">
+                    <span class="glyphicon glyphicon-log-out"></span>
+                    退出</a></li>
+            </ul>
+            </li>
+            {% endif %}
+        </ul>
+          <form class="navbar-form navbar-right" action="/all/search/" method="get" >
+            <input class="form-control" placeholder="Search..." type="text" name="s">
+          </form>
+        </div>
+      </div>
+    </nav>
+
+{% if errors %}
+    <li>
+        {% for error in errors %}
+         <p style="color: red;">
+            Please correct the error: {{error}} below.
+         </p>
+          {% endfor %}
+    </li>
+{% endif %}
+<div id="loginModal" class="">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close">x</button>
+        <h1 class="text-center text-primary">登录</h1>
+      </div>
+      <div class="modal-body">
+        <form action="" class="form col-md-12 center-block" method="post">{% csrf_token %}
+          <div class="form-group">
+            <input type="text" class="form-control input-lg" placeholder="用户名" name='username'>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control input-lg" placeholder="登录密码" name='password'>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary btn-lg btn-block">立刻登录</button>
+            <span><a href="#">找回密码</a></span>
+            <span><a href="{%url 'all:register'%}" class="pull-right">注册</a></span>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+</body>

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block table %}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<h1 class="page-header">Dashboard</h1>
+<h2 class="sub-header">搜索结果</h2>
+<div style="text-align:center ">
+<table width="100%" border="0" class="t1" cellpadding="0" cellspacing="0">
+    <thead>
+        <tr>
+            <th>合同号</th>
+            <th>分析登记日期</th>
+            <th>刻盘日期</th>
+            <th>样品数目</th>
+            <th>工时</th>
+            <th>共享</th>
+            <th>负责人</th>
+            <th>平台</th>
+            <th>项目信息</th>
+        </tr>
+    </thead>
+    <tbody>
+    {%for tast in tasts %}
+        <tr>
+            <td><a href="/detail/{{tast.id}}">{{tast.name}}</a></td>
+            <td>{{tast.start_time}}</td>
+            <td>{{tast.end_time}}</td>
+            <td>{{tast.sample_num}}</td>
+            <td>{{tast.working_hour}}</td>
+            <td>{{tast.get_transmission_mode_display}}</td>
+            <td>{{tast.analysts_name.all.0}}</td>
+            <td>{{tast.platform}}</td>
+            <td>{{tast.project_infomation}}</td>
+        </tr>
+    {%endfor%}
+    </tbody>
+</table>
+{%include "pagination.html"%}
+</div>
+</div>
+{%endblock%}
+
