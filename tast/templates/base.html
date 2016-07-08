@@ -86,8 +86,10 @@
   {% include "nav.html"%}
   {% block table%}{% endblock %}
   {% block detail %}{% endblock %}
-{#  <div class="col-lg-12">#}
-        {% include "footer.html" %}
+  <div class="col-lg-12">
+      <div class="row">
+          {% include "footer.html" %}
+      </div>
   </div>
 </body>
 {% block scripts %}{%endblock%}
