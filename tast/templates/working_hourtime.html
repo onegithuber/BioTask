@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block table %}
+    <div class="table-responsive" style="text-align:left  ">
+    <div class="container">
+        <form class = "form-horizontal" action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+            <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">起始日期</span>
+            <input type="text" class="form-control" placeholder="起始" aria-describedby="basic-addon1" name="starttime">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">结束日期</span>
+            <input type="text" class="form-control" placeholder="结束" aria-describedby="basic-addon1" name="endtime">
+        </div>
+        <button>查询</button>
+        </form>
+    </div>
+</div>
+    <div>
+    {% if tasts %}
+        <table id ="table_id" width="100%" border="0" class="t1 table hover table-bordered .table-condensed stripe" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>负责人</th>
+                    <th>合同号</th>
+                    <th>k3号</th>
+                    <th>工时</th>
+                </tr>
+            </thead>
+        <tbody>
+            {% for tast in tasts %}
+                <tr>
+                <td>{{ tast.analysts_name.all.0 }}</td>
+                <td>{{ tast.name }}</td>
+                <td>{{ tast.order_number }}</td>
+                <td>{{ tast.working_hour }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    {% endif %}
+    </div>
+
+{% endblock %}
