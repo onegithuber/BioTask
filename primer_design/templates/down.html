@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下载</title>
+</head>
+<body>
+    {% for dir in dirname reversed%}
+      <p><a href="/hla/primerdown/{{ dir.name }}" class="Button round" target="_blank"><span>{{ dir.name }}</span></a></p>
+    {% endfor %}
+</body>
+</html>
