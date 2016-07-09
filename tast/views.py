@@ -76,11 +76,11 @@ def loginview(request):
     password = None
     if request.method == 'POST':
         if not request.POST.get('username'):
-            errors.append('Please Enter username')
+            errors.append(0)
         else:
             username = request.POST.get('username')
         if not request.POST.get('password'):
-            errors.append('Please Enter password')
+            errors.append(1)
         else:
             password = request.POST.get('password')
         if username is not None and password is not None:
@@ -92,9 +92,9 @@ def loginview(request):
                     response.set_cookie('username', username, 3600)
                     return response
                 else:
-                    errors.append('disabled username')
+                    errors.append(3)
             else:
-                errors.append('invaild user')
+                errors.append(2)
     return render_to_response('login.html', {'errors': errors}, context_instance=RequestContext(request)
                               )
 
