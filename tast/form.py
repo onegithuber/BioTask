@@ -69,6 +69,8 @@ class EditForm(forms.Form):
         queryset=Platform.objects.all(),
         label=u'平台*',
         error_messages={'required': u'必选项'},
+        widget=forms.Select(
+            attrs={'class': 'form-control select select-primary mrs mbm', "data-toggle": "select"}),
         required=True,
     )
     name = forms.CharField(
@@ -106,6 +108,8 @@ class EditForm(forms.Form):
     )
     transmission_mode = forms.ChoiceField(
         label=u'状态',
+        widget=forms.Select(
+            attrs={'class': 'form-control select select-primary mrs mbm', "data-toggle": "select"}),
         choices=TRANS,
     )
     analysts_name = forms.ModelMultipleChoiceField(
@@ -119,12 +123,16 @@ class EditForm(forms.Form):
         queryset=User.objects.filter(groups__name=u'销售人员'),
         label=u'销售人员*',
         error_messages={'required': u'必选项'},
+        widget=forms.Select(
+            attrs={'class': 'form-control select select-primary mrs mbm', "data-toggle": "select"}),
         required=True,
     )
     sequenom = forms.ModelChoiceField(
         queryset=Sequenom.objects.all(),
         label=u'芯片商*',
         error_messages={'required': u'必选项'},
+        widget=forms.Select(
+            attrs={'class': 'form-control select select-primary mrs mbm', "data-toggle": "select"}),
         required=True,
     )
     inspection = forms.FileField(
@@ -139,12 +147,16 @@ class EditForm(forms.Form):
         queryset=Habitude.objects.all(),
         label=u'工作性质*',
         required=True,
+        widget=forms.Select(
+            attrs={'class': 'form-control select select-primary mrs mbm', "data-toggle": "select"}),
         error_messages={'required': u'必选项'},
     )
     detection_type = forms.ModelChoiceField(
         queryset=Detection.objects.all(),
         label=u'检测类型*',
         required=True,
+        widget=forms.Select(
+            attrs={'class': 'form-control select select-primary mrs mbm', "data-toggle": "select"}),
         error_messages={'required': u'必选项'}
     )
     analysts_demand = forms.TypedChoiceField(
@@ -222,6 +234,8 @@ class EditForm(forms.Form):
         label=u'技术支持*',
         error_messages={'required': u'必选项'},
         required=True,
+        widget=forms.Select(
+            attrs={'class': 'form-control select select-primary mrs mbm', "data-toggle": "select"}),
     )
     raw_data = forms.DateField(
         label=u'原始数据给出时间',
@@ -251,6 +265,8 @@ class EditForm(forms.Form):
     priority = forms.ChoiceField(
         label=u'优先级*',
         choices=PRIORITY,
+        widget=forms.Select(
+            attrs={'class': 'form-control select select-primary mrs mbm', "data-toggle": "select"}),
     )
     error_reason = forms.CharField(
         label=u'错误原因',

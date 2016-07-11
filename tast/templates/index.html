@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block table %}
-<div class="col-lg-10">
+<div class="col-md-10">
 <h2 class="sub-header">    项目汇总</h2>
 <div class="table-responsive" style="text-align:left  ">
 <table id ="table_id" width="100%" border="0" class="t1 table hover table-bordered .table-condensed stripe" cellpadding="0" cellspacing="0">
@@ -52,7 +52,13 @@
     {%endfor%}
     </tbody>
 </table>
-{%include "pagination.html"%}
+        <div class="container-fluid" style="padding-bottom: 20px">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-7">
+                    {%include "pagination.html"%}
+                </div>
+            </div>
+        </div>
 </div>
 </div>
 

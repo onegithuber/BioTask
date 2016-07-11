@@ -1,64 +1,127 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="http://v3.bootcss.com/favicon.ico">
-    <title>Capital</title>
-    <!-- Bootstrap core CSS -->
-    <link href="/static/css/bootstrap.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="/static/css/dashboard.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/table.css">
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="/static/js/ie-emulation-modes-warning.js"></script>
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+<meta charset="utf-8">
+<title>BioTask</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<link href="/static/css/base.css" rel="stylesheet" type="text/css">
+<link href="/static/css/login.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/Bubble.js"></script>
+<script type="text/javascript" src="/static/js/jquery.grumble.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/grumble.css">
+<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+</head>
 <body>
-{% if errors %}
-    <li>
-        {% for error in errors %}
-         <p style="color: red;">
-            Please correct the error: {{error}} below.
-         </p>
-          {% endfor %}
-    </li>
-{% endif %}
-<div id="loginModal" class="">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close">x</button>
-        <h1 class="text-center text-primary">登录</h1>
-      </div>
-      <div class="modal-body">
-        <form action="" class="form col-md-12 center-block" method="post">{% csrf_token %}
-          <div class="form-group">
-            <input type="text" class="form-control input-lg" placeholder="用户名" name='username'>
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control input-lg" placeholder="登录密码" name='password'>
-          </div>
-          <div class="form-group">
-            <button class="btn btn-primary btn-lg btn-block">立刻登录</button>
-            <span><a href="#">找回密码</a></span>
-            <span><a href="{%url 'all:register'%}" class="pull-right">注册</a></span>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-      </div>
+<div class="login">
+<form action="" method="post" id="form">
+	<div class="logo"></div>
+    <div class="login_form">
+    	<div class="user">
+        	<input class="text_value" value="" name="username" type="text" id="username">
+            <input class="text_value" value="" name="password" type="password" id="password">
+        </div>
+        <button class="button" id="submit" type="submit">登录</button>
     </div>
-  </div>
+    <div id="tip"></div>
+    </form>
 </div>
+{% if errors %}
+    {% for error in errors %}
+        {% if error == 0 %}
+            <script>
+                $(document).ready(function() {
+                    $('#username').grumble(
+                        {
+                            text: '请输入账号',
+                            angle: 180,
+                            distance: 0,
+                            showAfter: 2000,
+                            type: 'alt-',
+                            hideAfter: 2000
+                        }
+                    );
+                })
+            </script>
+        {% endif %}
+        {% if error == 1 %}
+            <script>
+                $(document).ready(function() {
+                    $('#password').grumble(
+                        {
+                            text: '请输入密码',
+                            angle: 180,
+                            distance: 0,
+                            showAfter: 2000,
+                            type: 'alt-',
+                            hideAfter: 2000
+                        }
+                    );
+                })
+            </script>
+        {% endif %}
+        {% if error == 2 %}
+            <script>
+                $(document).ready(function() {
+                    $('#username').grumble(
+                        {
+                            text: '用户名密码错误',
+                            angle: 180,
+                            distance: 0,
+                            showAfter: 2000,
+                            type: 'alt-',
+                            hideAfter: 2000
+                        }
+                    );
+                })
+            </script>
+        {% if error == 3 %}
+            <script>
+                $(document).ready(function() {
+                    $('#username').grumble(
+                        {
+                            text: '无效账号',
+                            angle: 180,
+                            distance: 0,
+                            showAfter: 2000,
+                            type: 'alt-',
+                            hideAfter: 2000
+                        }
+                    );
+                })
+            </script>
+        {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+<script>var basedir='/static/js/';</script>
+<script src="/static/js/do.js"></script>
+<script src="/static/js/config.js"></script>
+<script>
+Do.ready('form', function() {
+    $("#form").Validform({
+        ajaxPost: true,
+        postonce: true,
+        tiptype: function (msg, o, cssctl) {
+            if (!o.obj.is("form")) {
+                var objtip = o.obj.siblings(".Validform_checktip");
+                cssctl(objtip, o.type);
+                objtip.text(msg);
+            } else {
+                var objtip = o.obj.find("#tip");
+                cssctl(objtip, o.type);
+                if (o.type == 2) {
+                    window.location.href = 'index.php?r=admin/index/index';
+                } else {
+                    objtip.text(msg);
+                }
+            }
+        }
+    });
+});
+
+</script>
 </body>
+</html>
