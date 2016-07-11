@@ -1,165 +1,344 @@
-{% extends "base.html" %}
-{% block detail %}
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <div>
-        <table width="45%" border="0" class="t1" cellpadding="0" cellspacing="0">
-        <tbody>
-        <tr>
-            <td><span>合同号:</span></td>
-            <td>{{ tast.name }}</td>
-        </tr>
-        <tr>
-            <td><span>优先级:</span></td>
-            <td>{{ tast.get_priority_display }}</td>
-        </tr>
-        <tr>
-            <td><span>工作性质:</span></td>
-            <td>{{ tast.habitude }}</td>
-        </tr>
-        <tr>
-            <td><span>检测类型:</span></td>
-            <td>{{ tast.detection_type }}</td>
-        </tr>
-        <tr>
-            <td><span>项目信息:</span></td>
-            <td>{{ tast.tastinfo }}</td>
-        </tr>
-        <tr>
-            <td><span>物种:</span></td>
-            <td>{{ tast.species }}</td>
-        </tr>
-        <tr>
-            <td><span>样品数:</span></td>
-            <td>{{ tast.sample_num }}</td>
-        </tr>
-        <tr>
-            <td><span>批次:</span></td>
-            <td>{{ tast.batch }}</td>
-        </tr>
-        <tr>
-            <td><span>平台:</span></td>
-            <td>{{ tast.platform }}</td>
-        </tr>
-        <tr>
-            <td><span>芯片商:</span></td>
-            <td>{{ tast.sequenom }}</td>
-        </tr>
-        <tr>
-            <td><span>K3订单</span></td>
-            <td>{{ tast.order_number }}</td>
-        </tr>
-        <tr>
-            <td><span>Reads/样品:</span></td>
-            <td>{{ tast.reads }}</td>
-        </tr>
-        <tr>
-            <td><span>Reads长度:</span></td>
-            <td>{{ tast.reads_length }}</td>
-        </tr>
-        <tr>
-            <td><span>建库方法:</span></td>
-            <td>{{ tast.library_modus }}</td>
-        </tr>
-        <tr>
-            <td><span>数据拆分:</span></td>
-            <td>{{ tast.casaver }}</td>
-        </tr>
-        <tr>
-            <td><span>数据量/样本:</span>
-            </td>
-            <td>{{ tast.data_amount }}</td>
-        </tr>
-        <tr>
-            <td><span>项目开始时间:</span>
-            </td>
-            <td>{{ tast.start_time }}</td>
-        </tr>
-        <tr>
-            <td><span>分析人员:</span></td>
-            <td>{{ tast.analysts_name.all.0 }}</td>
-        </tr>
-        <tr>
-            <td><span>技术支持:</span></td>
-            <td>{{ tast.supporter.all.0 }}</td>
-        </tr>
-        <tr>
-            <td><span>销售人员:</span></td>
-            <td>{{ tast.salesman }}</td>
-        </tr>
-        <tr>
-            <td><span>分析需求:</span></td>
-            <td>{{ tast.analysts_demand }}</td>
-        </tr>
-        <tr>
-            <td><span>工时:</span></td>
-            <td>{{ tast.working_hour }}</td>
-        </tr>
-        <tr>
-            <td><span>机时:</span></td>
-            <td>{{ tast.machine_hour }}</td>
-        </tr>
-        <tr>
-            <td><span>rawdata给出:</span></td>
-            <td>{{ tast.raw_data }}</td>
-        </tr>
-        <tr>
-            <td><span>结果给出时间:</span>
-            </td><td>{{ tast.analysts_end_time }}</td>
-        </tr>
-        <tr>
-            <td><span>项目信息:</span></td>
-            <td>{{ tast.project_infomation }}</td>
-        </tr>
-        <tr>
-            <td><span>共享方式:</span></td>
-            <td>{{ tast.get_transmission_mode_display }}</td>
-        </tr>
-        <tr>
-            <td><span>检测报告:</span></td>
-            <td><a href="/downfile/{{ tast.inspection }}" class="Button round" target="_blank">{{ tast.inspection }}</a></td>
-        </tr>
-        <tr>
-            <td><span>质检报告:</span></td><td><a href="/downfile/{{ tast.qualitycontrl }}" class="Button round" target="_blank">{{ tast.qualitycontrl }}</a></td>
-        </tr>
-        <tr>
-            <td><span>出错原因:</span></td>
-            <td>{{ tast.error_reason }}</td>
-        </tr>
-        <tr>
-            <td><span>内部周期:</span></td>
-            <td>{{ tast.internal }}</td>
-        </tr>
-        <tr>
-            <td><span>外部周期:</span></td>
-            <td>{{ tast.external }}</td>
-        </tr>
-        <tr>
-            <td><span>内部到期时间:</span></td>
-            <td>{{ tast.internal_time }}</td>
-        </tr>
-        <tr>
-            <td><span>外部到期时间:</span></td>
-            <td>{{ tast.external_time }}</td>
-        </tr>
-        <tr>
-            <td><span>内部延期:</span></td>
-            <td>{{ tast.internal_extension }}</td>
-        </tr>
-        <tr>
-            <td><span>外部延期:</span></td>
-            <td>{{ tast.external_extension }}</td>
-        </tr>
-        <tr>
-            <td><span>超过分析张数:</span></td>
-            <td>{{ tast.additional_analysis }}</td>
-        </tr>
-        </tbody>
-        </table>
-    </div>
-        {% load comments_tags %}
-        <p>{% get_comments tast request.user %}</p>
-        {% comment_form tast request.user %}
-    </div>
-
+{#{% extends "base.html" %}#}
+{#{% block detail %}#}
+{#    <div class="col-md-6 center-block" style="background: white">#}
+{#    <div>#}
+{#                    <table width="45%" border="0" class="t1" cellpadding="0" cellspacing="0">#}
+{#                    <tbody>#}
+{#                    <tr>#}
+{#                        <td><span>合同号:</span></td>#}
+{#                        <td>{{ tast.name }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>优先级:</span></td>#}
+{#                        <td>{{ tast.get_priority_display }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>工作性质:</span></td>#}
+{#                        <td>{{ tast.habitude }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>检测类型:</span></td>#}
+{#                        <td>{{ tast.detection_type }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>项目信息:</span></td>#}
+{#                        <td>{{ tast.tastinfo }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>物种:</span></td>#}
+{#                        <td>{{ tast.species }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>样品数:</span></td>#}
+{#                        <td>{{ tast.sample_num }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>批次:</span></td>#}
+{#                        <td>{{ tast.batch }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>平台:</span></td>#}
+{#                        <td>{{ tast.platform }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>芯片商:</span></td>#}
+{#                        <td>{{ tast.sequenom }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>K3订单</span></td>#}
+{#                        <td>{{ tast.order_number }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>Reads/样品:</span></td>#}
+{#                        <td>{{ tast.reads }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>Reads长度:</span></td>#}
+{#                        <td>{{ tast.reads_length }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>建库方法:</span></td>#}
+{#                        <td>{{ tast.library_modus }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>数据拆分:</span></td>#}
+{#                        <td>{{ tast.casaver }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>数据量/样本:</span>#}
+{#                        </td>#}
+{#                        <td>{{ tast.data_amount }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>项目开始时间:</span>#}
+{#                        </td>#}
+{#                        <td>{{ tast.start_time }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>分析人员:</span></td>#}
+{#                        <td>{{ tast.analysts_name.all.0 }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>技术支持:</span></td>#}
+{#                        <td>{{ tast.supporter.all.0 }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>销售人员:</span></td>#}
+{#                        <td>{{ tast.salesman }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>分析需求:</span></td>#}
+{#                        <td>{{ tast.analysts_demand }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>工时:</span></td>#}
+{#                        <td>{{ tast.working_hour }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>机时:</span></td>#}
+{#                        <td>{{ tast.machine_hour }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>rawdata给出:</span></td>#}
+{#                        <td>{{ tast.raw_data }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>结果给出时间:</span>#}
+{#                        </td><td>{{ tast.analysts_end_time }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>项目信息:</span></td>#}
+{#                        <td>{{ tast.project_infomation }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>共享方式:</span></td>#}
+{#                        <td>{{ tast.get_transmission_mode_display }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>检测报告:</span></td>#}
+{#                        <td><a href="/downfile/{{ tast.inspection }}" class="Button round" target="_blank">{{ tast.inspection }}</a></td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>质检报告:</span></td><td><a href="/downfile/{{ tast.qualitycontrl }}" class="Button round" target="_blank">{{ tast.qualitycontrl }}</a></td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>出错原因:</span></td>#}
+{#                        <td>{{ tast.error_reason }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>内部周期:</span></td>#}
+{#                        <td>{{ tast.internal }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>外部周期:</span></td>#}
+{#                        <td>{{ tast.external }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>内部到期时间:</span></td>#}
+{#                        <td>{{ tast.internal_time }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>外部到期时间:</span></td>#}
+{#                        <td>{{ tast.external_time }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>内部延期:</span></td>#}
+{#                        <td>{{ tast.internal_extension }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>外部延期:</span></td>#}
+{#                        <td>{{ tast.external_extension }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td><span>超过分析张数:</span></td>#}
+{#                        <td>{{ tast.additional_analysis }}</td>#}
+{#                    </tr>#}
+{#                    </tbody>#}
+{#                    </table>#}
+{#                </div>#}
+{#                    {% load comments_tags %}#}
+{#                    <p>{% get_comments tast request.user %}</p>#}
+{#                    {% comment_form tast request.user %}#}
+{#    </div>#}
 {#    {% get_comment_count tast %}#}
-{% endblock %}
+    <!-- Modal -->
+{#<div class="modal fade" style="background: white" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">#}
+{#  <div class="modal-dialog" role="document">#}
+{#    <div class="modal-content">#}
+{#      <div class="modal-header">#}
+{#        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>#}
+{#        <h4 class="modal-title" id="myModalLabel">Modal title</h4>#}
+{#      </div>#}
+{#      <div class="modal-body">#}
+
+<div style="background: black">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">详细信息</h4>
+      </div>
+      <div class="modal-body">
+
+<table width="45%" border="0" class="t1" cellpadding="0" cellspacing="0">
+                    <tbody>
+                    <tr>
+                        <td><span>合同号:</span></td>
+                        <td>{{ tast.name }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>优先级:</span></td>
+                        <td>{{ tast.get_priority_display }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>工作性质:</span></td>
+                        <td>{{ tast.habitude }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>检测类型:</span></td>
+                        <td>{{ tast.detection_type }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>项目信息:</span></td>
+                        <td>{{ tast.tastinfo }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>物种:</span></td>
+                        <td>{{ tast.species }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>样品数:</span></td>
+                        <td>{{ tast.sample_num }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>批次:</span></td>
+                        <td>{{ tast.batch }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>平台:</span></td>
+                        <td>{{ tast.platform }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>芯片商:</span></td>
+                        <td>{{ tast.sequenom }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>K3订单</span></td>
+                        <td>{{ tast.order_number }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>Reads/样品:</span></td>
+                        <td>{{ tast.reads }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>Reads长度:</span></td>
+                        <td>{{ tast.reads_length }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>建库方法:</span></td>
+                        <td>{{ tast.library_modus }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>数据拆分:</span></td>
+                        <td>{{ tast.casaver }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>数据量/样本:</span>
+                        </td>
+                        <td>{{ tast.data_amount }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>项目开始时间:</span>
+                        </td>
+                        <td>{{ tast.start_time }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>分析人员:</span></td>
+                        <td>{{ tast.analysts_name.all.0 }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>技术支持:</span></td>
+                        <td>{{ tast.supporter.all.0 }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>销售人员:</span></td>
+                        <td>{{ tast.salesman }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>分析需求:</span></td>
+                        <td>{{ tast.analysts_demand }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>工时:</span></td>
+                        <td>{{ tast.working_hour }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>机时:</span></td>
+                        <td>{{ tast.machine_hour }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>rawdata给出:</span></td>
+                        <td>{{ tast.raw_data }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>结果给出时间:</span>
+                        </td><td>{{ tast.analysts_end_time }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>项目信息:</span></td>
+                        <td>{{ tast.project_infomation }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>共享方式:</span></td>
+                        <td>{{ tast.get_transmission_mode_display }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>检测报告:</span></td>
+                        <td><a href="/downfile/{{ tast.inspection }}" class="Button round" target="_blank">{{ tast.inspection }}</a></td>
+                    </tr>
+                    <tr>
+                        <td><span>质检报告:</span></td><td><a href="/downfile/{{ tast.qualitycontrl }}" class="Button round" target="_blank">{{ tast.qualitycontrl }}</a></td>
+                    </tr>
+                    <tr>
+                        <td><span>出错原因:</span></td>
+                        <td>{{ tast.error_reason }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>内部周期:</span></td>
+                        <td>{{ tast.internal }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>外部周期:</span></td>
+                        <td>{{ tast.external }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>内部到期时间:</span></td>
+                        <td>{{ tast.internal_time }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>外部到期时间:</span></td>
+                        <td>{{ tast.external_time }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>内部延期:</span></td>
+                        <td>{{ tast.internal_extension }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>外部延期:</span></td>
+                        <td>{{ tast.external_extension }}</td>
+                    </tr>
+                    <tr>
+                        <td><span>超过分析张数:</span></td>
+                        <td>{{ tast.additional_analysis }}</td>
+                    </tr>
+                    </tbody>
+                    </table>
+                </div>
+</div>
+{#      </div>#}
+{#      <div class="modal-footer">#}
+{#        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>#}
+{#        <button type="button" class="btn btn-primary">Save changes</button>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#</div>#}
+{#{% endblock %}#}
