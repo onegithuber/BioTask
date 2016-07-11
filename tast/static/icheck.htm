@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+
+	  <title>Checkboxes and radio buttons customization (jQuery and Zepto) plugin</title>
+	  <meta charset="utf-8">
+	  <meta content="width=device-width" name="viewport">
+	    <link href="./images/flat/green.css" rel="stylesheet">
+	    <script src="./jquery.js"></script>
+	    <script src="./js/custom.min.js"></script>
+	    <script src="./js/icheck.js"></script>
+</head>
+
+<body>
+
+                <div class="">
+                    <label>
+                  <input type="checkbox" name="quux[1]">
+                  Foo
+                </label>
+
+                <label for="baz[1]">Bar</label>
+                <input type="radio" name="quux[2]" id="baz[1]" checked>
+
+                <label for="baz[2]">Bar</label>
+                <input type="radio" name="quux[2]" id="baz[2]">
+                </div>
+
+</body>
+<script>
+$(document).ready(function(){
+  $('input').iCheck({
+    checkboxClass: 'icheckbox_flat-green',
+    radioClass: 'iradio_flat-green'
+  });
+});
+</script>
+</html>
