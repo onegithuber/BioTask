@@ -47,20 +47,36 @@
             {% else %}
             <td ><font size="3" color="black">正常</font></td>
             {% endif %}
-            <td style="white-space: nowrap"><a href="/reedit/{{tast.id}}"><button type="button" class="btn btn-success">编辑</button></a><a href="/detail/{{tast.id}}"><button type="button" class="btn btn-danger">戳我</button></a></td>
+            <td style="white-space: nowrap"><a href="/reedit/{{tast.id}}" ><button type="button" class="btn btn-success">编辑</button></a>
+                <a href="/detail/{{tast.id}}" data-toggle="modal" data-target="#myModal"><button type="button" class="btn btn-danger" >戳我</button></a></td>
         </tr>
     {%endfor%}
     </tbody>
 </table>
         <div class="container-fluid" style="padding-bottom: 20px">
             <div class="row">
-                <div class="col-md-5 col-md-offset-7">
+                <div class="col-md-6 col-md-offset-6">
                     {%include "pagination.html"%}
                 </div>
             </div>
         </div>
 </div>
 </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;">
+  <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+<!-- Large modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
 
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <p>sdfsdfsdfsdfsdfffffffffffffff</p>
+    </div>
+  </div>
+</div>
 {%endblock%}
 
