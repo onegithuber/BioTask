@@ -91,7 +91,7 @@ class EditForm(forms.Form):
     project_infomation = forms.CharField(
         label=u'备注',
         required=False,
-        widget=forms.Textarea(attrs={'class': 'form-control', 'style': 'width:1000px'}),
+        widget=forms.Textarea(attrs={'class': 'form-control', 'style': 'width:320px'}),
     )
     sample_num = forms.IntegerField(
         label=u'样品数目*',
@@ -182,51 +182,51 @@ class EditForm(forms.Form):
     )
     species = forms.CharField(
         label=u'物种*',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:1000px'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:320px'}),
     )
     tastinfo = forms.CharField(
         label='合同详情',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:1000px'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:320px'}),
         required=False,
     )
     batch = forms.IntegerField(
         label='批次',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:1000px'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:320px'}),
         required=False,
     )
     additional_analysis = forms.CharField(
         label='超过芯片分析',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:1000px'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:320px'}),
         required=False,
     )
     order_number = forms.CharField(
         label='K3订单',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:1000px'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:320px'}),
         required=False,
     )
     reads = forms.CharField(
         label='Reads/样品',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:1000px'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:320px'}),
         required=False,
     )
     reads_length = forms.CharField(
         label='Reads长度',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:1000px'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:320px'}),
         required=False,
     )
     library_modus = forms.CharField(
         label='建库方法',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:1000px'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:320px'}),
         required=False,
     )
     casaver = forms.CharField(
         label='数据拆分',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:1000px'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:320px'}),
         required=False,
     )
     data_amount = forms.CharField(
         label='数据量/样品',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:1000px'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:320px'}),
         required=False,
     )
     supporter = forms.ModelChoiceField(
@@ -240,27 +240,27 @@ class EditForm(forms.Form):
     raw_data = forms.DateField(
         label=u'原始数据给出时间',
         required=False,
-        widget=forms.TextInput(),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:320px'}),
     )
     internal = forms.IntegerField(
         label='内部周期（天）',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:1000px'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:320px'}),
         required=False,
     )
     external = forms.IntegerField(
         label='外部周期（天）',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:1000px'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:320px'}),
         required=False,
     )
     internal_time = forms.DateField(
         label=u'内部到期时间',
         required=False,
-        widget=forms.TextInput(),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:320px'}),
     )
     external_time = forms.DateField(
         label=u'外部到期时间',
         required=False,
-        widget=forms.TextInput(),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:320px'}),
     )
     priority = forms.ChoiceField(
         label=u'优先级*',
@@ -271,7 +271,7 @@ class EditForm(forms.Form):
     error_reason = forms.CharField(
         label=u'错误原因',
         required=False,
-        widget=forms.TextInput()
+        widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width:320px'})
     )
 
     def save(self):
