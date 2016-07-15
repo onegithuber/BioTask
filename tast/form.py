@@ -138,10 +138,12 @@ class EditForm(forms.Form):
     inspection = forms.FileField(
         label=u'检测报告',
         required=False,
+        widget=forms.ClearableFileInput(attrs={"class": "file-loading", 'style': 'width:320px'})
     )
     qualitycontrl = forms.FileField(
         label=u'质检报告',
         required=False,
+        widget=forms.ClearableFileInput(attrs={"class": "file-loading", 'style': 'width:320px'})
     )
     habitude = forms.ModelChoiceField(
         queryset=Habitude.objects.all(),
